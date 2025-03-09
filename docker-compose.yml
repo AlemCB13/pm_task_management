@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  pm_task_management:
+    build: .
+    ports:
+      - "8084:8080"
+    depends_on:
+      - pm_task_management_db
+    env_file:
+      - .env  # Usa el archivo .env para las variables de entorno
+    networks:
+      - app-network
+
+  pm_task_management_db:
+    image: postgres:13
+    env_file:
+      - .env  # Usa el archivo .env para las variables de entorno
+    ports:
+      - "5434:5432"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
