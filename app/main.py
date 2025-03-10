@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from .endpoints import tasks  # Importa los endpoints de tasks.py
-from .database import engine, Base  # Importa la configuración de la base de datos
+from app.endpoints import tasks  # Importa los endpoints de tasks.py
+from app.database import engine, Base  # Importa la configuración de la base de datos
 
 # Crea la aplicación FastAPI
 app = FastAPI()
@@ -12,6 +12,6 @@ Base.metadata.create_all(bind=engine)
 app.include_router(tasks.router, prefix="/tasks", tags=["tasks"])
 
 # Ruta de inicio (opcional)
-@app.get("/")
+@app.get("/start")
 def read_root():
     return {"message": "Welcome to the Task Management Service!"}
