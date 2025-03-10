@@ -8,8 +8,6 @@ services:
       - pm_task_management_db
     env_file:
       - .env
-    networks:
-      - app-network
 
   pm_task_management_db:
     image: postgres:13
@@ -22,9 +20,3 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
